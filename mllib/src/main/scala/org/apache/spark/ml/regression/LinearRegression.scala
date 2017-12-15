@@ -519,7 +519,7 @@ class LinearRegression @Since("1.3.0") (@Since("1.3.0") override val uid: String
         state = states.next()
         arrayBuilder += state.adjustedValue
       }
-      if (state == null) {
+      if (state == null || state.searchFailed) {
         val msg = s"${optimizer.getClass.getName} failed."
         logError(msg)
         throw new SparkException(msg)
